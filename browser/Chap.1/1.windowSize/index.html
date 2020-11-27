@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Window Size</title>
+    <style>
+        #wrapper {
+            background-color: #6a89cc;
+            display: inline-block;
+            font-size: 2rem;
+            margin: 30px;
+            padding: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <p>window size</p>
+    </div>
+    
+    <script>
+        const wrapper = document.getElementById('wrapper');
+
+        function handleResize() {
+            wrapper.innerText = `window.screen : ${window.screen.width} ${window.screen.height}
+            window.outer : ${window.outerWidth} ${window.outerHeight}
+            window.inner : ${window.innerWidth} ${window.innerHeight}
+            documentElement.clientWidth : ${document.documentElement.clientWidth} ${document.documentElement.clientHeight}
+            `
+        }
+
+        window.addEventListener('resize', handleResize);
+        handleResize();
+        
+    </script>
+</body>
+</html>

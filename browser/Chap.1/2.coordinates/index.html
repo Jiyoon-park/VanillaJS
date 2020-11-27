@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>coordinates</title>
+    <style>
+        .wrapper {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .boxes {
+            margin: 5px;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #596275;
+            border-radius: 5px;
+            margin: 5px 0;
+        }
+
+        .box.special {
+            background-color: #303952;
+        }
+
+        .buttons {
+            margin: 5px;
+            position: fixed;
+            right: 10px;
+        }
+
+        button {
+            background-color: #60a3bc;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            color: #fff;
+        }
+
+        button:hover {
+            background-color: #3c6382;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="boxes">
+            <div id="box" class="box"></div>
+            <div id="box" class="box"></div>
+            <div id="box" class="box"></div>
+            <div id="box" class="box"></div>
+            <div id="box" class="box"></div>
+            <div id="box" class="box"></div>
+            <div id="box" class="box"></div>
+            <div id="box" class="box"></div>
+            <div id="box" class="box special"></div>
+            <div id="box" class="box"></div>
+            <div id="box" class="box"></div>
+            <div id="box" class="box"></div>
+            <div id="box" class="box"></div>
+            <div id="box" class="box"></div>
+            <div id="box" class="box"></div>
+            <div id="box" class="box"></div>
+            <div id="box" class="box"></div>
+        </div>
+        <div class="buttons">
+            <button id="scrollBy">scroll by 100px(y)</button>
+            <button id="scrollTo">scroll to 100px(y)</button>
+            <button id="scrollInto">scroll into special</button>
+        </div>
+    </div>
+    <script>
+        const special = document.querySelector('.special');
+        const scrollBy = document.getElementById('scrollBy');
+        const scrollTo = document.getElementById('scrollTo');
+        const scrollInto = document.getElementById('scrollInto');
+
+        // 클릭 시 
+        function handleClick(e) {
+            domRect = e.target.getBoundingClientRect();
+            console.log(domRect);
+            console.log(`client x, y = ${e.clientX}, ${e.clientY}`);
+            console.log(`page x, y = ${e.pageX}, ${e.pageY}`);
+        }
+
+        // top:cur+100
+        function handleScrollBy() {
+            window.scrollTo(0,`${window.scrollY+100}`);
+            // == window.scrollBy(0, 100);
+        }
+
+        // top:100으로 이동
+        function handleScrollTo() {
+            window.scrollTo(0, 100);
+        }
+
+        // 스페셜의 top으로 이동
+        function handleScrollInto() {
+            let topOfSpecial = special.offsetTop;
+            window.scrollTo({top: topOfSpecial});
+            // == special.scrollIntoView();
+        }
+
+        special.addEventListener('click', handleClick);
+
+        scrollBy.addEventListener('click', handleScrollBy);
+        scrollTo.addEventListener('click', handleScrollTo);
+        scrollInto.addEventListener('click', handleScrollInto);
+    </script>
+</body>
+</html>
